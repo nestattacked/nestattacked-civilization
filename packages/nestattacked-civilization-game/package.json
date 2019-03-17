@@ -1,0 +1,11 @@
+{
+  "name": "nestattacked-civilization",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "build": "ncc"
+  },
+  "dependencies": {
+    "nestattacked-civilization-kit": "0.0.1"
+  }
+}
