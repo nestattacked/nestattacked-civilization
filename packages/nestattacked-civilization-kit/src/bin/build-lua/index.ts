@@ -1,45 +1,23 @@
-import Config from './config';
+import { config, getLuaSourceFiles, getLuaTempFiles } from '../util';
 import { compileFilesWithOptions } from 'typescript-to-lua';
 import { readFile, outputFile, remove } from 'fs-extra';
-import { getLuaSourceFiles, getLuaTempFiles } from './get-files';
-import { moduleMap } from '../lib/api/module-map';
 import { uniq } from 'lodash';
 
-interface AsyncFunction {
-  (): Promise<void>;
-}
-
-type BuildLuaFile = AsyncFunction;
+type AsyncFunction = () => Promise<void>;
+type BuildLua = AsyncFunction;
 type Compile = AsyncFunction;
 type AdjustTempFiles = AsyncFunction;
-
-interface DeleteImport {
-  (code: string): string;
-}
-
-interface AdjustTempFile {
-  (file: string): Promise<void>;
-}
-
-interface TransformTempLua {
-  (file: string): Promise<string>;
-}
-
-interface ExtractModules {
-  (code: string): string;
-}
-
-interface GenerateIncludeStatement {
-  (modules: string[]): string;
-}
-
+type DeleteImport = (code: string) => string;
+type AdjustTempFile = (file: string) => Promise<void>;
+type TransformTempLua = (file: string) => Promise<string>;
+type ExtractModules = (code: string) => string;
 type Task = Promise<void>;
 
 const compile: Compile = async () => {
   const files: string[] = await getLuaSourceFiles();
   compileFilesWithOptions(files, {
-    rootDir: Config.rootDir,
-    outDir: Config.outDir,
+    rootDir: config.rootDir,
+    outDir: config.outDir,
     noHeader: true
   });
 };
@@ -48,17 +26,6 @@ const deleteImport: DeleteImport = code => {
   return code.replace(
     'local __TSTL_nestattacked_civilization_kit = require("nestattacked-civilization-kit");\n',
     ''
-  );
-};
-
-const generateIncludeStatement: GenerateIncludeStatement = modules => {
-  const includeNames: string[] = modules
-    .map(module => moduleMap[module])
-    .filter(includeName => includeName !== undefined);
-  return (
-    uniq(includeNames)
-      .map(includeName => `include("${includeName}");`)
-      .join('\n') + (includeNames.length === 0 ? '' : '\n\n')
   );
 };
 
@@ -71,8 +38,7 @@ const extractModules: ExtractModules = code => {
     code = code.replace(pattern, '');
     matched = code.match(pattern);
   }
-  const includeStatement: string = generateIncludeStatement(modules);
-  return `${includeStatement}${code}`;
+  return code;
 };
 
 const transformTempLua: TransformTempLua = async file => {
@@ -95,9 +61,9 @@ const adjustTempFiles: AdjustTempFiles = async () => {
   await Promise.all(tasks);
 };
 
-const buildLuaFile: BuildLuaFile = async () => {
+const buildLua: BuildLua = async () => {
   await compile();
   await adjustTempFiles();
 };
 
-export { buildLuaFile };
+export { buildLua };

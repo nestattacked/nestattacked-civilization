@@ -1,17 +1,15 @@
 #!/usr/bin/env node
-import { clean } from './clean';
-import { buildLuaFile } from './build-lua-file';
-import { buildSqlFile } from './build-sql-file';
+import { clean } from './util';
+import { buildLua } from './build-lua';
+import { buildXml } from './build-xml';
 import { generateModInfo } from './generate-mod-info';
 
-interface Main {
-  (): Promise<void>;
-}
+type Main = () => Promise<void>;
 
 const main: Main = async () => {
   await clean();
-  await buildLuaFile();
-  await buildSqlFile();
+  await buildLua();
+  await buildXml();
   await generateModInfo();
 };
 

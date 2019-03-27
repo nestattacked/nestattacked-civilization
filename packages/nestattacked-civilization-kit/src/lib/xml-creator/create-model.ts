@@ -6,12 +6,9 @@ interface Model<FixAttributes, FloatAttributes> {
   delete(condition: FloatAttributes): void;
 }
 
-interface CreateModel {
-  <FixAttributes, FloatAttributes>(tableName: string): Model<
-    FixAttributes,
-    FloatAttributes
-  >;
-}
+type CreateModel = <FixAttributes, FloatAttributes>(
+  tableName: string
+) => Model<FixAttributes, FloatAttributes>;
 
 const createModel: CreateModel = (tableName: string) => {
   return {

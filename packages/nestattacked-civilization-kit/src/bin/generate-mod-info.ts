@@ -1,17 +1,13 @@
 import { outputFile } from 'fs-extra';
 import XML from 'xml';
-import Config from './config';
-import { getLuaDistFiles, getSqlDistFiles } from './get-files';
-
-interface GenerateModInfo {
-  (): Promise<void>;
-}
+import { config, getLuaDistFiles, getSqlDistFiles } from './util';
 
 interface Json {
   [key: string]: any;
 }
 
 type ModInfo = Json;
+type GenerateModInfo = () => Promise<void>;
 
 const generateModInfo: GenerateModInfo = async () => {
   const luaFiles: string[] = await getLuaDistFiles();
@@ -20,12 +16,12 @@ const generateModInfo: GenerateModInfo = async () => {
   const sqlFileObjects: Json[] = sqlFiles.map(file => ({ File: file }));
   const modInfo: ModInfo = {
     Mod: [
-      { _attr: { id: Config.modId } },
+      { _attr: { id: config.modId } },
       {
         Properties: [
-          { Name: Config.name },
-          { Description: Config.description },
-          { Teaser: Config.teaser }
+          { Name: config.name },
+          { Description: config.description },
+          { Teaser: config.teaser }
         ]
       },
       {
@@ -41,7 +37,7 @@ const generateModInfo: GenerateModInfo = async () => {
     declaration: true,
     indent: '  '
   });
-  const modInfoPath: string = `${Config.outDir}/${Config.outDir}.modinfo`;
+  const modInfoPath: string = `${config.outDir}/${config.outDir}.modinfo`;
   await outputFile(modInfoPath, modInfoXml);
 };
 

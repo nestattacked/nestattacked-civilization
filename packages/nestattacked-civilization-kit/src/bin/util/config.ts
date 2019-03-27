@@ -13,4 +13,4 @@ interface NccConfig {
 const configPath: string = path.resolve(process.cwd(), 'ncconfig.json');
 const config: NccConfig = loadJsonFile(configPath);
 
-export default config;
+export { config };

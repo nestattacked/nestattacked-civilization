@@ -7,9 +7,9 @@
     "ncc": "./dist/bin/ncc.js"
   },
   "scripts": {
-    "after-build": "chmod a+x dist/bin/ncc.js && rm dist/lib/api/index.* -f && cp src/lib/api/index.* dist/lib/api",
+    "after-build": "chmod a+x dist/bin/ncc.js && rm dist/lib/api/index.* -f && mkdir dist/lib/api && cp src/lib/api/index.* dist/lib/api",
     "dev": "tsc-watch --onSuccess \"yarn after-build\"",
-    "build": "rm dist -r -f && tsc && yarn after-build"
+    "build": "rm dist -r -f && tsc -p tsconfig.build.json && yarn after-build"
   },
   "dependencies": {
     "execa": "^1.0.0",
@@ -18,7 +18,6 @@
     "load-json-file": "^5.2.0",
     "lodash": "^4.17.11",
     "sql-bricks": "^2.0.4",
-    "ts-node": "^8.0.3",
     "typescript": "^3.3.3333",
     "typescript-to-lua": "^0.15.2",
     "xml": "^1.0.1"
@@ -30,6 +29,7 @@
     "@types/node": "^11.10.4",
     "@types/sql-bricks": "^2.0.1",
     "@types/xml": "^1.0.3",
+    "ts-node": "^8.0.3",
     "tsc-watch": "^2.1.2"
   }
 }

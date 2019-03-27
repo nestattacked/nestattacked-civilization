@@ -1,2 +1,2 @@
-export * from './model';
+export * from './xml-creator';
 export * from './api';
