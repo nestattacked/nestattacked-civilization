@@ -1,4 +1,4 @@
-import { createModel, Model } from './create-model';
+import { ItemCreator } from '../util/item-creator';
 
 interface FixAttributes {
   Type: string;
@@ -10,6 +10,8 @@ interface FloatAttributes {
   Kind?: string;
 }
 
-const Type: Model<FixAttributes, FloatAttributes> = createModel('Types');
+const Type: ItemCreator<FixAttributes, FloatAttributes> = new ItemCreator(
+  'Types'
+);
 
 export { Type };

@@ -1,6 +1,6 @@
 import { outputFile } from 'fs-extra';
 import XML from 'xml';
-import { config, getLuaDistFiles, getSqlDistFiles } from './util';
+import { config } from './util';
 
 interface Json {
   [key: string]: any;
@@ -10,10 +10,6 @@ type ModInfo = Json;
 type GenerateModInfo = () => Promise<void>;
 
 const generateModInfo: GenerateModInfo = async () => {
-  const luaFiles: string[] = await getLuaDistFiles();
-  const sqlFiles: string[] = await getSqlDistFiles();
-  const luaFileObjects: Json[] = luaFiles.map(file => ({ File: file }));
-  const sqlFileObjects: Json[] = sqlFiles.map(file => ({ File: file }));
   const modInfo: ModInfo = {
     Mod: [
       { _attr: { id: config.modId } },
@@ -26,11 +22,12 @@ const generateModInfo: GenerateModInfo = async () => {
       },
       {
         InGameActions: [
-          { UpdateDatabase: sqlFileObjects },
-          { ImportFiles: luaFileObjects }
+          {
+            UpdateDatabase: [{ File: 'Update_Database.xml' }]
+          }
         ]
       },
-      { Files: [...luaFileObjects, ...sqlFileObjects] }
+      { Files: [{ File: 'Update_Database.xml' }] }
     ]
   };
   const modInfoXml: string = XML(modInfo, {

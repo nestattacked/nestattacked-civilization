@@ -32,28 +32,7 @@ create config file `ncconfig.json` in you project root directory. Refer to `Conf
 
 ## write your code
 
-this kit supports two kinds of source files: `x.sql.ts`、 `x.lua.ts`. Just write code and ncc will take care of the rest part.
-
-```typescript
-//x.sql.ts
-import { Type } from 'nestattacked-civilization-kit';
-
-Type.create([
-  {
-    Type: 'BUILDING_GAME_STUDIO',
-    Kind: 'KIND_BUILDING'
-  }
-]);
-
-Type.update({ Type: 'BUILDING_ARENA'}, { Kind: 'KIND_BUILDING'});
-```
-
-```typescript
-//x.lua.ts
-import { print } from 'nestattacked-civilization-kit';
-
-print('hello nestattacked civilization kit');
-```
+todo
 
 ## compile
 
