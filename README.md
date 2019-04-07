@@ -8,7 +8,7 @@ developing, i'm trying to create a kit to write civilization 6 mod in typescript
 
 `yarn`
 
-## lern bootstrap
+## lerna bootstrap
 
 `yarn bootstrap`
 
@@ -18,7 +18,11 @@ developing, i'm trying to create a kit to write civilization 6 mod in typescript
 
 ## write code
 
-now you can change code in `nestattacked-civilization-kit`, and test it in `nestattacked-civilization-game`.
+now you can change code in `nestattacked-civilization-kit`, and test it with example `nestattacked-civilization-game`.
+
+## before commit
+
+goto root directory and run command `yarn ready`， make sure there is no errors.
 
 # How to use
 
@@ -30,9 +34,9 @@ now you can change code in `nestattacked-civilization-kit`, and test it in `nest
 
 create config file `ncconfig.json` in you project root directory. Refer to `Config Detail` section for more detail.
 
-## write your code
+## write your mod code
 
-todo
+there is a example: `packages/nestattacked-civilization-game`.
 
 ## compile
 
