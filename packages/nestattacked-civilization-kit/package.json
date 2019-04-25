@@ -17,6 +17,8 @@
     "globby": "^9.1.0",
     "load-json-file": "^5.2.0",
     "lodash": "^4.17.11",
+    "rollup": "^1.10.1",
+    "rollup-plugin-typescript2": "^0.20.1",
     "typescript": "^3.3.3333",
     "typescript-to-lua": "^0.15.2",
     "xml": "^1.0.1"

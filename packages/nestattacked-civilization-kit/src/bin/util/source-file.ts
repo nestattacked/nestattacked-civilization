@@ -1,7 +1,7 @@
 interface SourceFile {
   stage: 'InGameActions' | 'FrontEndActions';
-  type: 'xml';
-  subType?: 'UpdateDatabase';
+  type: 'xml' | 'lua';
+  subType?: 'UpdateDatabase' | 'ImportFiles';
   sourceFileName: string;
   distFileName: string;
   sourceExist?: boolean;
@@ -15,6 +15,13 @@ const sourceFiles: SourceFile[] = [
     subType: 'UpdateDatabase',
     sourceFileName: 'update-database',
     distFileName: 'Update_Database'
+  },
+  {
+    stage: 'InGameActions',
+    type: 'lua',
+    subType: 'ImportFiles',
+    sourceFileName: 'import-files',
+    distFileName: 'Import_Files'
   }
 ];
 
