@@ -21,7 +21,7 @@ const generateModInfo: GenerateModInfo = async () => {
   const validSourceFiles: SourceFile[] = await getValidSourceFiles();
   const Actions: Json[] = buildActions(validSourceFiles);
   const files: Json[] = validSourceFiles.map(sourceFile => ({
-    File: `${sourceFile.distFileName}.${sourceFile.type}`
+    File: `${sourceFile.distFileName}.${sourceFile.extension}`
   }));
   const modInfo: ModInfo = {
     Mod: [
@@ -54,7 +54,7 @@ const getValidSourceFiles: GetValidSourceFiles = async () => {
 
 const addDistExistInfo: AddDistExistInfo = async sourceFile => {
   const exist: boolean = await pathExists(
-    `${config.outDir}/${sourceFile.distFileName}.${sourceFile.type}`
+    `${config.outDir}/${sourceFile.distFileName}.${sourceFile.extension}`
   );
   const newSourceFile: SourceFile = { ...sourceFile };
   newSourceFile.distExist = exist;
@@ -81,7 +81,7 @@ const buildStage: BuildStage = (stageSourceFiles, stage) => {
 
 const buildSubType: BuildSubType = (subTypeSourceFiles, subType) => ({
   [subType]: subTypeSourceFiles.map(sourceFile => ({
-    File: `${sourceFile.distFileName}.${sourceFile.type}`
+    File: `${sourceFile.distFileName}.${sourceFile.extension}`
   }))
 });
 

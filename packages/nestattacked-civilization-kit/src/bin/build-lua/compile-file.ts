@@ -31,6 +31,8 @@ const compileFile: CompileFile = async (sourceFileName, distFileName) => {
   );
   const inputOptions: RollupOptions = {
     input: sourcePath,
+    // tslint:disable-next-line: no-empty
+    onwarn: () => {},
     plugins: [
       typescript({
         tsconfigOverride: {

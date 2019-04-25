@@ -1,7 +1,8 @@
 interface SourceFile {
   stage: 'InGameActions' | 'FrontEndActions';
-  type: 'xml' | 'lua';
-  subType?: 'UpdateDatabase' | 'ImportFiles';
+  extension: 'xml' | 'lua';
+  subType: 'UpdateDatabase' | 'ImportFiles' | 'UpdateColors' | 'UpdateText';
+  mainType: 'GameInfo' | 'GameData';
   sourceFileName: string;
   distFileName: string;
   sourceExist?: boolean;
@@ -11,17 +12,35 @@ interface SourceFile {
 const sourceFiles: SourceFile[] = [
   {
     stage: 'InGameActions',
-    type: 'xml',
+    extension: 'xml',
+    mainType: 'GameInfo',
     subType: 'UpdateDatabase',
     sourceFileName: 'update-database',
     distFileName: 'Update_Database'
   },
   {
     stage: 'InGameActions',
-    type: 'lua',
+    extension: 'lua',
+    mainType: 'GameInfo',
     subType: 'ImportFiles',
     sourceFileName: 'import-files',
     distFileName: 'Import_Files'
+  },
+  {
+    stage: 'InGameActions',
+    extension: 'xml',
+    mainType: 'GameInfo',
+    subType: 'UpdateColors',
+    sourceFileName: 'update-colors',
+    distFileName: 'Update_Colors'
+  },
+  {
+    stage: 'InGameActions',
+    extension: 'xml',
+    mainType: 'GameData',
+    subType: 'UpdateText',
+    sourceFileName: 'update-text',
+    distFileName: 'Update_Text'
   }
 ];
 

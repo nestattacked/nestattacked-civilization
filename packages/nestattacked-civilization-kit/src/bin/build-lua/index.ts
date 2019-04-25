@@ -6,7 +6,7 @@ type Task = Promise<void>;
 
 const buildLua: BuildLua = async () => {
   const tasks: Task[] = sourceFiles
-    .filter(sourceFile => sourceFile.type === 'lua')
+    .filter(sourceFile => sourceFile.extension === 'lua')
     .map(sourceFile =>
       compileFile(sourceFile.sourceFileName, sourceFile.distFileName)
     );

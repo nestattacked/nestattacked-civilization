@@ -6,7 +6,7 @@ type Task = Promise<void>;
 
 const buildXml: BuildXml = async () => {
   const tasks: Task[] = sourceFiles
-    .filter(sourceFile => sourceFile.type === 'xml')
+    .filter(sourceFile => sourceFile.extension === 'xml')
     .map(sourceFile =>
       buildItems(sourceFile.sourceFileName, sourceFile.distFileName)
     );
