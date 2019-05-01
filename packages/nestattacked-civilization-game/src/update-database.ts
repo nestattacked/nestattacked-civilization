@@ -1,16 +1,16 @@
-import { Type } from 'nestattacked-civilization-kit';
+import { Types } from 'nestattacked-civilization-kit';
 
-Type.create({
+Types.create({
   Type: 'BUILDING_GAME_STUDIO',
   Kind: 'KIND_BUILDING'
 });
 
-Type.delete({
+Types.delete({
   Type: 'BUILDING_ARENA',
   Kind: 'KIND_BUILDING'
 });
 
-Type.update(
+Types.update(
   {
     Type: 'BUILDING_ARENA'
   },
