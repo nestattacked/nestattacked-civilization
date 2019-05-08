@@ -30,7 +30,8 @@ const generateModInfo: GenerateModInfo = async () => {
         Properties: [
           { Name: config.name },
           { Description: config.description },
-          { Teaser: config.teaser }
+          { Teaser: config.teaser },
+          { CompatibleVersions: '2.0' }
         ]
       },
       ...Actions,
