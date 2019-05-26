@@ -17,7 +17,7 @@
         "no-relative-imports": false,
         "only-arrow-functions": true,
         "function-name": false,
-        "typedef": [true, "property-declaration", "variable-declaration"],
+        "typedef": [true, "property-declaration"],
         "variable-name": [true, "check-format", "allow-pascal-case"],
         "mocha-avoid-only": false,
         "mocha-no-side-effect-code": false,

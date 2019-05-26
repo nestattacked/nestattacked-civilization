@@ -1,13 +1,13 @@
 {
   "name": "nestattacked-civilization-kit",
   "version": "0.0.1",
-  "main": "./dist/lib/index.js",
   "license": "MIT",
   "bin": {
-    "ncc": "./dist/bin/ncc.js"
+    "ncc": "./dist/index.js"
   },
+  "types": "./types/index.d.ts",
   "scripts": {
-    "after-build": "chmod a+x dist/bin/ncc.js && rm dist/lib/api -r -f && mkdir dist/lib/api && cp src/lib/api/index.* dist/lib/api",
+    "after-build": "chmod a+x dist/index.js",
     "dev": "tsc-watch --onSuccess \"yarn after-build\"",
     "build": "rm dist -r -f && tsc -p tsconfig.build.json && yarn after-build"
   },
