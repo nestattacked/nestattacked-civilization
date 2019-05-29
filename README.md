@@ -1,3 +1,7 @@
+# Deprecated
+
+after doing some experiments, I give this up because of the limitation of civilization mod system.
+
 # Introduce
 
 developing, i'm trying to create a kit to write civilization 6 mod in typescript.
